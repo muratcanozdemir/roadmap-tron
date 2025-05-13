@@ -1,4 +1,4 @@
-name: Deploy Reveal.js
+name: Deploy pages to GitHub Pages
 
 on:
   push:
