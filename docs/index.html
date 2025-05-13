@@ -1,0 +1,198 @@
+<!doctype html>
+<script>
+  const allowed = sessionStorage.getItem('unlocked');
+  if (!allowed) {
+    const pw = prompt("Enter password:");
+    if (pw !== "{{PASSWORD}}") {
+      document.write("Access denied.");
+      throw new Error("Blocked");
+    } else {
+      sessionStorage.setItem('unlocked', 'yes');
+    }
+  }
+</script>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Scientific Platform Vision Pitch</title>
+  <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/black.css" id="theme">
+  <style>
+    section {
+      font-size: 0.8em;
+      text-align: center;
+    }
+    .fragment {
+      transition: all 0.5s ease-in-out;
+    }
+    .logo {
+      position: absolute;
+      top: 1em;
+      right: 2em;
+      height: 60px;
+    }
+    .content-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2em;
+      flex-wrap: wrap;
+      margin-top: 2em;
+    }
+    .text-content {
+      flex: 1 1 40%;
+      text-align: left;
+      max-width: 40vw;
+    }
+    .text-content p {
+      margin: 0.5em 0;
+    }
+    img.diagram {
+      flex: 1 1 40%;
+      max-width: 40vw;
+      max-height: 60vh;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <img src="logo.png" class="logo" alt="Logo">
+  <div class="reveal">
+    <div class="slides">
+
+      <section>
+        <h2>What Happens After the Researcher Hits 'Run'?</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+            <p class="fragment">Notebooks executed</p>
+            <p class="fragment">TSV results scattered</p>
+            <p class="fragment">Screenshots emailed or lost in report_new_final.md</p>
+            <p class="fragment">Insights lost or unverifiable</p>
+			<p class="fragment">Don't we need standardization?</p>
+          </div>
+          <img src="img/scattered-workflow.png" class="diagram" alt="Scattered Workflow Diagram">
+        </div>
+      </section>
+
+      <section>
+        <h2>Safe Scratchpads for Scientists</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+			<p class="fragment">Utilize current tooling</p>
+			<p class="fragment">Launch new scratch containers on demand</p>
+            <p class="fragment">Isolated & persistent sessions</p>
+			<p class="fragment">Auto-cleanup for idle users</p>
+            <p class="fragment">Your data persists in a centralized location</p>
+          </div>
+          <img src="img/jupyter-environment.webp" class="diagram" alt="Jupyter Environment">
+        </div>
+      </section>
+
+      <section>
+        <h2>Explorable Results</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+            <p class="fragment">Simple explorer for experiment outputs</p>
+            <p class="fragment">Tagged, sharable, and traceable</p>
+            <p class="fragment">No more lost ZIPs or screenshots</p>
+			<p class="fragment">Share results with collaborators with magic links</p>
+          </div>
+          <img src="img/explorer-visualization.png" class="diagram" alt="Explorer Visualization">
+        </div>
+      </section>
+
+      <section>
+        <h2>Dashboards for Everyone</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+			<p class="fragment">Can't wait until the next conference? Share it now.</p>
+            <p class="fragment">Real-time project visibility</p>
+			<p class="fragment">Store your tables and plots, and recall on demand</p>
+            <p class="fragment">Auto-generated status metrics</p>
+            <p class="fragment">Team + exec reporting made effortless</p>
+          </div>
+          <img src="img/grafana-dashboard.png" class="diagram" alt="Grafana Dashboard">
+        </div>
+      </section>
+
+      <section>
+        <h2>From Experiment to Pipeline</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+            <p class="fragment">Templated CI/CD workflows</p>
+            <p class="fragment">Reproducible runs with tracked versions</p>
+			<p class="fragment">Make repetitive jobs error-free</p>
+            <p class="fragment">Less guesswork, more confidence</p>
+          </div>
+          <img src="img/cicd-pipeline.png" class="diagram" alt="CI/CD Pipeline">
+        </div>
+      </section>
+
+      <section>
+        <h2>Mining Knowledge, Not Just Data</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+            <p class="fragment">Parse internal papers, reports and manuscripts</p>
+            <p class="fragment">Build searchable knowledge graphs</p>
+            <p class="fragment">Support symbolic reasoning with ontologies</p>
+			<p class="fragment">Collaboration hotspot</p>
+          </div>
+          <img src="img/knowledge-graph.png" class="diagram" alt="Knowledge Graph">
+        </div>
+      </section>
+
+      <section>
+        <h2>Security Without Friction</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+            <p class="fragment">SSO integration</p>
+            <p class="fragment">Fine-grained access control</p>
+            <p class="fragment">Auditability by design</p>
+			<p class="fragment">Onboarding externals won't be a problem</p>
+          </div>
+          <img src="img/security.png" class="diagram" alt="Security">
+        </div>
+      </section>
+
+      <section>
+        <h2>Ready for the World?</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+            <p class="fragment">Packaged as Helm charts</p>
+            <p class="fragment">Installable on-prem or cloud</p>
+            <p class="fragment">Modular, scalable, open to partners</p>
+          </div>
+          <img src="img/kubernetes-helm.webp" class="diagram" alt="Kubernetes Helm">
+        </div>
+      </section>
+
+      <section>
+        <h2>The Platform Already Exists — It Just Needs a Spine</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+            <p class="fragment">You're sitting on a gold mine</p>
+            <p class="fragment">The tools are ready</p>
+            <p class="fragment">Let’s build the backbone</p>
+          </div>
+          <img src="img/spine.jpg" class="diagram" alt="Spine Diagram">
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      controls: true,
+      progress: true,
+      transition: 'slide',
+      transitionSpeed: 'fast'
+    });
+  </script>
+</body>
+</html>
