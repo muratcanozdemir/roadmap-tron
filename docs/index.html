@@ -37,7 +37,7 @@
       align-items: center;
       justify-content: center;
       gap: 2em;
-      flex-wrap: wrap;
+      flex-wrap: nowrap; 
       margin-top: 2em;
     }
     .text-content {
@@ -69,9 +69,9 @@
           <div class="text-content">
             <p class="fragment">Notebooks executed</p>
             <p class="fragment">TSV results scattered</p>
-            <p class="fragment">Screenshots emailed or lost in report_new_final.md</p>
+            <p class="fragment">Screenshots emailed or lost in report_new_final_really_done(2)(3).md</p>
             <p class="fragment">Insights lost or unverifiable</p>
-			<p class="fragment">Don't we need standardization?</p>
+			      <p class="fragment">Don't we need standardization?</p>
           </div>
           <img src="img/scattered-workflow.png" class="diagram" alt="Scattered Workflow Diagram">
         </div>
@@ -81,10 +81,10 @@
         <h2>Safe Scratchpads for Scientists</h2>
         <div class="content-wrapper">
           <div class="text-content">
-			<p class="fragment">Utilize current tooling</p>
-			<p class="fragment">Launch new scratch containers on demand</p>
+            <p class="fragment">Utilize current tooling</p>
+            <p class="fragment">Launch new scratch containers on demand</p>
             <p class="fragment">Isolated & persistent sessions</p>
-			<p class="fragment">Auto-cleanup for idle users</p>
+			      <p class="fragment">Auto-cleanup for idle users</p>
             <p class="fragment">Your data persists in a centralized location</p>
           </div>
           <img src="img/jupyter-environment.webp" class="diagram" alt="Jupyter Environment">
@@ -97,8 +97,8 @@
           <div class="text-content">
             <p class="fragment">Simple explorer for experiment outputs</p>
             <p class="fragment">Tagged, sharable, and traceable</p>
-            <p class="fragment">No more lost ZIPs or screenshots</p>
-			<p class="fragment">Share results with collaborators with magic links</p>
+            <p class="fragment">No more lost ZIPs, screenshots or folder jungle</p>
+			      <p class="fragment">Share results with collaborators using magic links</p>
           </div>
           <img src="img/explorer-visualization.png" class="diagram" alt="Explorer Visualization">
         </div>
@@ -108,11 +108,11 @@
         <h2>Dashboards for Everyone</h2>
         <div class="content-wrapper">
           <div class="text-content">
-			<p class="fragment">Can't wait until the next conference? Share it now.</p>
+			      <p class="fragment">Can't wait until the next conference? Share it now.</p>
             <p class="fragment">Real-time project visibility</p>
-			<p class="fragment">Store your tables and plots, and recall on demand</p>
+			      <p class="fragment">Store your tables, plots, and recall on demand</p>
             <p class="fragment">Auto-generated status metrics</p>
-            <p class="fragment">Team + exec reporting made effortless</p>
+            <p class="fragment">Team + exec reporting</p>
           </div>
           <img src="img/grafana-dashboard.png" class="diagram" alt="Grafana Dashboard">
         </div>
@@ -124,7 +124,7 @@
           <div class="text-content">
             <p class="fragment">Templated CI/CD workflows</p>
             <p class="fragment">Reproducible runs with tracked versions</p>
-			<p class="fragment">Make repetitive jobs error-free</p>
+			      <p class="fragment">Make repetitive jobs error-free</p>
             <p class="fragment">Less guesswork, more confidence</p>
           </div>
           <img src="img/cicd-pipeline.png" class="diagram" alt="CI/CD Pipeline">
@@ -138,7 +138,7 @@
             <p class="fragment">Parse internal papers, reports and manuscripts</p>
             <p class="fragment">Build searchable knowledge graphs</p>
             <p class="fragment">Support symbolic reasoning with ontologies</p>
-			<p class="fragment">Collaboration hotspot</p>
+			      <p class="fragment">Collaboration hotspot</p>
           </div>
           <img src="img/knowledge-graph.png" class="diagram" alt="Knowledge Graph">
         </div>
@@ -151,7 +151,7 @@
             <p class="fragment">SSO integration</p>
             <p class="fragment">Fine-grained access control</p>
             <p class="fragment">Auditability by design</p>
-			<p class="fragment">Onboarding externals won't be a problem</p>
+			      <p class="fragment">Onboarding externals won't be a problem</p>
           </div>
           <img src="img/security.png" class="diagram" alt="Security">
         </div>
@@ -180,10 +180,33 @@
           <img src="img/spine.jpg" class="diagram" alt="Spine Diagram">
         </div>
       </section>
+      <section>
+      <section style="background-color: #ffffff; color: #111111;">
+        <h2 style="color: #111111;">Project Timeline</h2>
+        <div class="mermaid" style="margin-top: 2em;">
+        gantt
+          title Computational Research Infrastructure Project Timeline
+          dateFormat  YYYY-MM-DD
+          axisFormat  %b %d
+          section Core Foundation
+          Infra & JupyterHub     :done, a1, 2024-08-01, 60d
+          DVC & Storage          :active, a2, 2024-08-15, 60d
+          section Collaboration
+          Explorer & Sharing     : b1, 2024-08-25, 40d
+          Dashboards             : b2, 2024-09-05, 40d
+          section Formalization
+          Pipelines & CI/CD      : c1, 2024-08-15, 60d
+          Symbolic Reasoning     : c2, 2024-10-01, 180d
+          section Security & Delivery
+          SSO & RBAC             : d1, 2024-08-20, 180d
+          BYOC Helm Packaging    : d2, 2024-08-15, 150d
+      </pre>
+    </section>
 
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
     Reveal.initialize({
       hash: true,
@@ -191,8 +214,40 @@
       controls: true,
       progress: true,
       transition: 'slide',
-      transitionSpeed: 'fast'
+      transitionSpeed: 'fast',
+    });
+
+    // Trigger Mermaid manually after Reveal has initialized
+    Reveal.on('ready', () => {
+      mermaid.initialize({ 
+       theme: 'base',
+       themeVariables: {
+          background: '#ffffff',
+          textColor: '#111111',
+          primaryColor: '#e0e0e0',
+          edgeLabelBackground: '#ffffff',
+          taskTextColor: '#111111',
+          taskColor: '#e6e6e6',
+          taskBorderColor: '#cccccc',
+          sectionTextColor: '#111111',
+          sectionBkgColor: '#dddddd',
+          gridColor: '#cccccc'
+        },
+        gantt: {
+          barHeight: 20,
+          fontSize: 14,
+          sectionFontSize: 16,
+          axisFormat: '%b %d',
+          padding: 10,
+          topPadding: 50,
+          leftPadding: 100,
+          gridLineStartPadding: 30
+        }
+      });
+      document.querySelectorAll('.mermaid').forEach((el) => {
+        mermaid.init(undefined, el);
+      });
     });
   </script>
-</body>
+
 </html>
