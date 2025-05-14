@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/black.css" id="theme">
   <style>
     section {
-      font-size: 0.8em;
+      font-size: 0.7em;
       text-align: center;
     }
     .fragment {
@@ -66,6 +66,15 @@
   <img src="logo.png" class="logo" alt="Logo">
   <div class="reveal">
     <div class="slides">
+      <section> 
+        <h2>Why Platform Maturity is Crucial for Research Institutes</h2>
+        <div class="content-wrapper">
+          <div class="text-content">
+            <p class="fragment">Research teams need reproducible, secure, and shareable compute environments</p>
+            <p class="fragment">Platform maturity helps reduce friction in onboarding new projects and collaborators</p>
+            <p class="fragment">A strong DevOps foundation boosts trust from partners, reviewers, and auditors</p>
+            <p class="fragment">This architecture isn’t just about DevOps — it’s about enabling TRON to scale its research, secure funding, and attract top talent</p>
+      </section>
 
       <section>
         <h2>What Happens After the Researcher Hits 'Run'?</h2>
@@ -206,6 +215,15 @@
           BYOC Helm Packaging    : d2, 2024-08-15, 150d
       </pre>
     </section>
+    <section>
+        <h2>Expected Outcomes</h2>
+        <div class="content-wrapper">
+            <p class="fragment">Reduced onboarding time for new researchers and projects</p>
+            <p class="fragment">Easier compliance with data-sharing or security expectations</p>
+            <p class="fragment">Greater confidence in scaling efforts across labs or departments</p>
+			      <p class="fragment">Technical maturity that can be referenced in partnerships and funding proposals</p>
+        </div>
+      </section>
 
     </div>
   </div>
@@ -221,36 +239,52 @@
       transitionSpeed: 'fast',
     });
 
-    // Trigger Mermaid manually after Reveal has initialized
-    Reveal.on('ready', () => {
-      mermaid.initialize({ 
-       theme: 'base',
-       themeVariables: {
-          background: '#ffffff',
-          textColor: '#111111',
-          primaryColor: '#e0e0e0',
-          edgeLabelBackground: '#ffffff',
-          taskTextColor: '#111111',
-          taskColor: '#e6e6e6',
-          taskBorderColor: '#cccccc',
-          sectionTextColor: '#111111',
-          sectionBkgColor: '#dddddd',
-          gridColor: '#cccccc'
-        },
-        gantt: {
-          barHeight: 20,
-          fontSize: 14,
-          sectionFontSize: 16,
-          axisFormat: '%b %d',
-          padding: 10,
-          topPadding: 50,
-          leftPadding: 100,
-          gridLineStartPadding: 30
-        }
-      });
-      document.querySelectorAll('.mermaid').forEach((el) => {
-        mermaid.init(undefined, el);
-      });
+    // Mermaid config once
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      themeVariables: {
+        background: '#ffffff',
+        textColor: '#111111',
+        primaryColor: '#e0e0e0',
+        edgeLabelBackground: '#ffffff',
+        taskTextColor: '#111111',
+        taskColor: '#e6e6e6',
+        taskBorderColor: '#cccccc',
+        sectionTextColor: '#111111',
+        sectionBkgColor: '#dddddd',
+        gridColor: '#cccccc'
+      },
+      gantt: {
+        barHeight: 20,
+        fontSize: 14,
+        sectionFontSize: 16,
+        axisFormat: '%b %d',
+        padding: 10,
+        topPadding: 50,
+        leftPadding: 100,
+        gridLineStartPadding: 30
+      }
+    });
+
+    function renderMermaidIfNeeded(slide) {
+      const blocks = slide.querySelectorAll('.mermaid:not(.rendered)');
+      if (blocks.length > 0) {
+        setTimeout(() => {
+          blocks.forEach(el => {
+            mermaid.init(undefined, el);
+            el.classList.add('rendered');
+          });
+        }, 50); // Let Reveal settle the DOM
+      }
+    }
+
+    Reveal.on('slidechanged', (event) => {
+      renderMermaidIfNeeded(event.currentSlide);
+    });
+
+    Reveal.on('ready', (event) => {
+      renderMermaidIfNeeded(event.currentSlide);
     });
   </script>
 
