@@ -18,11 +18,12 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Prepare token-injected site
+        env:
+          REVEAL_PW: ${{ secrets.REVEAL_PW }}
         run: |
           mkdir build
           cp -r docs/* build/
-          PW="$(printf %s "${{ secrets.REVEAL_PW }}")"
-          sed -i "s|{{PASSWORD}}|$PW|g" build/index.html
+          sed -i "s|{{PASSWORD}}|$REVEAL_PW|g" build/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
