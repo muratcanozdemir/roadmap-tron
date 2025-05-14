@@ -4,8 +4,12 @@
   if (!allowed) {
     const pw = prompt("Enter password:");
     if (pw !== "{{PASSWORD}}") {
-      document.write("Access denied.");
-      throw new Error("Blocked");
+      // Stop rendering, blank the entire document early
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.innerHTML = "<h1 style='color:white;text-align:center;margin-top:20vh;'>Access denied.</h1>";
+        document.body.style.background = "black";
+      });
+      throw new Error("Access blocked");
     } else {
       sessionStorage.setItem('unlocked', 'yes');
     }
@@ -193,9 +197,9 @@
           DVC & Storage          :active, a2, 2024-08-15, 60d
           section Collaboration
           Explorer & Sharing     : b1, 2024-08-25, 40d
-          Dashboards             : b2, 2024-09-05, 40d
+          Dashboards             : b2, 2024-09-05, 45d
           section Formalization
-          Pipelines & CI/CD      : c1, 2024-08-15, 60d
+          Pipelines & CI/CD      : c1, 2024-08-15, 90d
           Symbolic Reasoning     : c2, 2024-10-01, 180d
           section Security & Delivery
           SSO & RBAC             : d1, 2024-08-20, 180d
